@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.list-container {
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.list-section {
+  position: relative;
+  height: 440px;  /* Height to accommodate 10 items + padding (40px * 11) */
+}
+
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  height: 20px;
+  background-color: white;
+}
+
+.absolute-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.sticky-item {
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  z-index: 1;
+  border-bottom: 1px solid #ccc;
+}
