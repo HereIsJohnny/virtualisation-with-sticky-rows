@@ -2,39 +2,39 @@ import React from 'react';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { Link } from 'react-router-dom';
+import { ITEMS_IN_GROUP, WINDOW } from '../constants';
 import './ReactWindow.css';
 
 function ReactWindow() {
   // Create an array of 100 items
   const items = Array.from({ length: 100 }, (_, index) => `Item ${index + 1}`);
 
-  // Group items into chunks of 10
+  // Group items into chunks
   const itemGroups = [];
-  for (let i = 0; i < items.length; i += 10) {
-    itemGroups.push(items.slice(i, i + 10));
+  for (let i = 0; i < items.length; i += ITEMS_IN_GROUP) {
+    itemGroups.push(items.slice(i, i + ITEMS_IN_GROUP));
   }
 
-  const itemHeight = 60;
-  const itemsPerGroup = 11; // 1 header + 10 items
-  const groupHeight = itemHeight * itemsPerGroup;
+  const groupHeight = WINDOW.ITEM_HEIGHT * WINDOW.ITEMS_PER_GROUP;
 
   const Row = ({ index, style }) => {
-    const isHeader = index % itemsPerGroup === 0;
-    const groupIndex = Math.floor(index / itemsPerGroup);
-    const itemIndex = index % itemsPerGroup - 1;
-    const group = itemGroups[groupIndex];
-
-    if (isHeader) {
-      return (
-        <div className="header-item" style={style}>
-          {`${groupIndex + 1}x items`}
-        </div>
-      );
-    }
-
+    const group = itemGroups[index];
+    
     return (
-      <div className="list-item" style={style}>
-        {group[itemIndex]}
+      <div style={style} className="group-container">
+        <div 
+          className="header-item" 
+          style={{ 
+            top: `0px` 
+          }}
+        >
+          {`${index + 1}x items`}
+        </div>
+        {group.map((item, idx) => (
+          <div key={idx} className="list-item">
+            {item}
+          </div>
+        ))}
       </div>
     );
   };
@@ -52,9 +52,9 @@ function ReactWindow() {
               className="list"
               width={width}
               height={height}
-              itemCount={itemGroups.length * itemsPerGroup}
-              itemSize={itemHeight}
-              overscanCount={5}
+              itemCount={itemGroups.length}
+              itemSize={groupHeight}
+              overscanCount={2}
             >
               {Row}
             </List>

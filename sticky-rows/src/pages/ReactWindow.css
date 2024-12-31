@@ -31,13 +31,25 @@
   background: white;
 }
 
+.group-container {
+  height: 100%;
+  position: relative;
+}
+
+.group-inner {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  contain: strict;
+}
+
 .list-item {
   padding: 0 20px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
   box-sizing: border-box;
-  height: 100%;
+  height: 60px;
 }
 
 .header-item {
@@ -48,9 +60,8 @@
   font-weight: bold;
   border-bottom: 1px solid #ddd;
   box-sizing: border-box;
-  height: 100%;
+  height: 60px;
   position: sticky;
-  top: 0;
   z-index: 1;
 }
 

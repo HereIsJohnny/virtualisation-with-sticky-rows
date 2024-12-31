@@ -1,24 +1,22 @@
 import React from 'react';
 import { Grid, AutoSizer } from 'react-virtualized';
 import { Link } from 'react-router-dom';
+import { ITEMS_IN_GROUP, VIRTUALIZED } from '../constants';
 import './ReactVirtualized.css';
 
 function ReactVirtualized() {
   // Create an array of 100 items
   const items = Array.from({ length: 100 }, (_, index) => `Item ${index + 1}`);
 
-  // Group items into chunks of 10
+  // Group items into chunks
   const itemGroups = [];
-  for (let i = 0; i < items.length; i += 10) {
-    itemGroups.push(items.slice(i, i + 10));
+  for (let i = 0; i < items.length; i += ITEMS_IN_GROUP) {
+    itemGroups.push(items.slice(i, i + ITEMS_IN_GROUP));
   }
 
-  const rowHeight = 60;
-  const itemsPerSection = 11; // 1 header + 10 items
-
   const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-    const sectionIndex = Math.floor(rowIndex / itemsPerSection);
-    const indexInSection = rowIndex % itemsPerSection;
+    const sectionIndex = Math.floor(rowIndex / VIRTUALIZED.ITEMS_PER_SECTION);
+    const indexInSection = rowIndex % VIRTUALIZED.ITEMS_PER_SECTION;
     const group = itemGroups[sectionIndex];
 
     if (indexInSection === 0) {
@@ -46,13 +44,13 @@ function ReactVirtualized() {
     columnStopIndex,
   }) => {
     const renderedCells = [];
-    const sectionHeight = rowHeight * itemsPerSection;
+    const sectionHeight = VIRTUALIZED.ROW_HEIGHT * VIRTUALIZED.ITEMS_PER_SECTION;
 
     // Group cells by section
     const sections = new Map();
 
     for (let rowIndex = rowStartIndex; rowIndex <= rowStopIndex; rowIndex++) {
-      const sectionIndex = Math.floor(rowIndex / itemsPerSection);
+      const sectionIndex = Math.floor(rowIndex / VIRTUALIZED.ITEMS_PER_SECTION);
       
       if (!sections.has(sectionIndex)) {
         sections.set(sectionIndex, []);
@@ -69,8 +67,8 @@ function ReactVirtualized() {
               position: 'absolute',
               left: 0,
               right: 0,
-              top: (rowIndex % itemsPerSection) * rowHeight,
-              height: rowHeight,
+              top: (rowIndex % VIRTUALIZED.ITEMS_PER_SECTION) * VIRTUALIZED.ROW_HEIGHT,
+              height: VIRTUALIZED.ROW_HEIGHT,
             }
           });
 
@@ -117,8 +115,8 @@ function ReactVirtualized() {
               height={height}
               columnWidth={width}
               columnCount={1}
-              rowHeight={rowHeight}
-              rowCount={itemGroups.length * itemsPerSection}
+              rowHeight={VIRTUALIZED.ROW_HEIGHT}
+              rowCount={itemGroups.length * VIRTUALIZED.ITEMS_PER_SECTION}
               cellRenderer={cellRenderer}
               cellRangeRenderer={cellRangeRenderer}
               overscanRowCount={20}
