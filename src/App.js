@@ -26,6 +26,16 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <header className="App-header">
+          <a 
+            href="https://github.com/HereIsJohnny/virtualisation-with-sticky-rows"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#61dafb', marginTop: '1rem' }}
+          >
+            View on GitHub
+          </a>
+        </header>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/react-virtualized" element={<ReactVirtualized />} />
