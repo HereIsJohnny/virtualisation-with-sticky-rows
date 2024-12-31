@@ -8,8 +8,11 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
     "react-virtualized": "^9.22.5",
+    "react-virtualized-auto-sizer": "^1.0.25",
+    "react-window": "^1.8.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

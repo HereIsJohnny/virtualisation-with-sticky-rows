@@ -1,0 +1,62 @@
+.virtualized-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.virtualized-page header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #666;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: #333;
+}
+
+.list-container {
+  flex: 1;
+  margin: 20px;
+  position: relative;
+}
+
+.section-wrapper {
+  position: absolute;
+  overflow: hidden;
+}
+
+.section-container {
+  position: relative;
+  height: 100%;
+}
+
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  background: white;
+}
+
+.sticky-item {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.virtual-grid {
+  outline: none;
+  will-change: transform;
+} 

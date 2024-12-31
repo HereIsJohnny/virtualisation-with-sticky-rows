@@ -1,0 +1,79 @@
+.window-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.window-page header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #666;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: #333;
+}
+
+.list-container {
+  flex: 1;
+  margin: 20px;
+  position: relative;
+}
+
+.list {
+  border: 1px solid #e0e0e0;
+  background: white;
+}
+
+.list-item {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.header-item {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Scrollbar styles */
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar */
+.list {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+} 
