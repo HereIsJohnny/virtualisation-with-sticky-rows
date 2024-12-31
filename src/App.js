@@ -7,7 +7,7 @@ import './App.css';
 function Home() {
   return (
     <div className="home">
-      <h1>React Virtualization Examples</h1>
+      <h1>React Virtualization Examples (Sticky Rows)</h1>
       <nav>
         <ul>
           <li>
