@@ -28,7 +28,7 @@
 
 .section-wrapper {
   position: absolute;
-  overflow: hidden;
+  width: 100%;
 }
 
 .list-item {
@@ -55,3 +55,12 @@
   outline: none;
   will-change: transform;
 } 
+
+
+.ReactVirtualized__Grid__innerScrollContainer{
+  width: 100%!important;
+  overflow: unset!important;
+  position: static!important;
+  max-width: unset!important;
+  max-height: unset!important;
+}

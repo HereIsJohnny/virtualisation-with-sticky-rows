@@ -35,6 +35,18 @@ function ReactVirtualized() {
     );
   };
 
+  const calculateOverscanIndices = ({
+    cellCount,
+    startIndex,
+    stopIndex,
+    overscanCellsCount = 50
+  }) => {
+    return {
+      overscanStartIndex: Math.max(0, startIndex - overscanCellsCount),
+      overscanStopIndex: Math.min(cellCount - 1, stopIndex + overscanCellsCount)
+    };
+  };
+
   const cellRangeRenderer = ({
     rowStartIndex,
     rowStopIndex,
@@ -117,7 +129,7 @@ function ReactVirtualized() {
               rowCount={itemGroups.length * VIRTUALIZED.ITEMS_PER_SECTION}
               cellRenderer={cellRenderer}
               cellRangeRenderer={cellRangeRenderer}
-              overscanRowCount={20}
+              overscanIndicesGetter={calculateOverscanIndices}
             />
           )}
         </AutoSizer>
