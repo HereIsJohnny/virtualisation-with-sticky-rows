@@ -47,7 +47,7 @@
   background-color: #f0f0f0;
   font-weight: bold;
   position: sticky;
-  top: 0;
+  top: 0px;
   z-index: 1;
 }
 
@@ -63,4 +63,21 @@
   position: static!important;
   max-width: unset!important;
   max-height: unset!important;
+}
+
+.table-header {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.sticky-item {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  position: sticky;
+  top: 40px;
+  z-index: 1;
 }

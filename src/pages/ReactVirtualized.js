@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, AutoSizer } from 'react-virtualized';
+import { MultiGrid, AutoSizer } from 'react-virtualized';
 import { Link } from 'react-router-dom';
 import { ITEMS_IN_GROUP, VIRTUALIZED } from '../constants';
 import './ReactVirtualized.css';
@@ -15,13 +15,36 @@ function ReactVirtualized() {
   }
 
   const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-    const sectionIndex = Math.floor(rowIndex / VIRTUALIZED.ITEMS_PER_SECTION);
-    const indexInSection = rowIndex % VIRTUALIZED.ITEMS_PER_SECTION;
+    // Handle the fixed header row
+    if (rowIndex === 0) {
+      return (
+        <div 
+          key={key} 
+          style={{ 
+            ...style, 
+            position: 'sticky',
+            top: 0,
+            zIndex: 2  // Higher z-index than section headers
+          }} 
+          className="list-item table-header"
+        >
+          Sticky Header
+        </div>
+      );
+    }
+
+    // Adjust indices to account for the header row
+    const adjustedRowIndex = rowIndex - 1;
+    const sectionIndex = Math.floor(adjustedRowIndex / VIRTUALIZED.ITEMS_PER_SECTION);
+    const indexInSection = adjustedRowIndex % VIRTUALIZED.ITEMS_PER_SECTION;
     const group = itemGroups[sectionIndex];
 
     if (indexInSection === 0) {
       return (
-        <div key={key} style={{ ...style, position: 'sticky' }} className="list-item sticky-item">
+        <div 
+          key={key} 
+          className="list-item sticky-item"
+        >
           {`${sectionIndex + 1}x items`}
         </div>
       );
@@ -110,6 +133,8 @@ function ReactVirtualized() {
     return renderedCells;
   };
 
+  const fixedRowCount = 1;
+
   return (
     <div className="virtualized-page">
       <header>
@@ -119,17 +144,18 @@ function ReactVirtualized() {
       <div className="list-container">
         <AutoSizer>
           {({ height, width }) => (
-            <Grid
+            <MultiGrid
               className="virtual-grid"
               width={width}
               height={height}
               columnWidth={width}
               columnCount={1}
               rowHeight={VIRTUALIZED.ROW_HEIGHT}
-              rowCount={itemGroups.length * VIRTUALIZED.ITEMS_PER_SECTION}
+              rowCount={itemGroups.length * VIRTUALIZED.ITEMS_PER_SECTION + fixedRowCount}
               cellRenderer={cellRenderer}
               cellRangeRenderer={cellRangeRenderer}
               overscanIndicesGetter={calculateOverscanIndices}
+              fixedRowCount={fixedRowCount}
             />
           )}
         </AutoSizer>
