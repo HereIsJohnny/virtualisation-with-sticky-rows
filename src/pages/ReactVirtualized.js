@@ -90,9 +90,7 @@ function ReactVirtualized() {
             right: 0,
           }}
         >
-          <div className="section-container">
             {cells}
-          </div>
         </div>
       );
     });
