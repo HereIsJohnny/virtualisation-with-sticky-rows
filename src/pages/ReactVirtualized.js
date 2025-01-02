@@ -45,7 +45,7 @@ function ReactVirtualized() {
           key={key} 
           className="list-item sticky-item"
         >
-          {`${sectionIndex + 1}x items`}
+          {`${sectionIndex}x items`}
         </div>
       );
     }
